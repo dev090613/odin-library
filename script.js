@@ -13,11 +13,13 @@ function Book(title, author, pages, read) {
   this.read = read
 }
 
-function addBookToLibrary(title, author, id, pages, read) {
-  const book = new Book(title, author, id, pages, read)
+function addBookToLibrary(title, author, pages, read) {
+  const book = new Book(title, author, pages, read)
 
   myLibrary.push(book);
 }
 
-addBookToLibrary('어린왕자', 'Antoine de Saint-Exupery', 144, true)
+addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, true)
+addBookToLibrary('1984', 'George Orwell', 328, true)
+
 console.log(myLibrary[0])
