@@ -6,3 +6,45 @@ img, picture, video, canvas, svg { display: block; max-width: 100%; }
 input, button, textarea, select { font: inherit; }
 p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 :where(ul, ol)[role="list"] { list-style: none; padding: 0; }
+
+/* MY CSS */
+:root {
+  --clr-bg: #f4f4f9;
+  --clr-add-book-btn: #4f46e5;
+  --clr-add-book-btn-hover: #4338ca;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--clr-bg);
+  font-family: "Roboto", sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 6em;
+  border-bottom: 1px solid black;
+}
+
+header > h1 {
+  font-size: 3em;
+}
+
+.add-book-btn {
+  background-color: var(--clr-add-book-btn);
+  color: white;
+  border: none;
+  font-size: 1rem;
+  padding: 0.75em 1.25em;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.1s ease-in-out;
+}
+
+.add-book-btn:hover {
+  background-color: var(--clr-add-book-btn-hover);
+  transform: scale(1.05);
+}

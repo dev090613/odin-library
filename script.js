@@ -21,5 +21,3 @@ function addBookToLibrary(title, author, pages, read) {
 
 addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, true)
 addBookToLibrary('1984', 'George Orwell', 328, true)
-
-console.log(myLibrary[0])
