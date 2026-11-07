@@ -24,7 +24,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1em 6em;
+  padding: 1rem clamp(1rem, 5vw, 4rem);
+  /* padding: 1em 6em; */
   border-bottom: 1px solid black;
 }
 
@@ -47,4 +48,25 @@ header > h1 {
 .add-book-btn:hover {
   background-color: var(--clr-add-book-btn-hover);
   transform: scale(1.05);
+}
+
+/* MAIN */
+main {
+  padding: 2rem clamp(1rem, 5vw, 4rem);
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
 }
