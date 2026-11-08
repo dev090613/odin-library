@@ -27,16 +27,39 @@ function renderLibrary() {
 
   for (const book of myLibrary) {
     const card = bookTemplate.content.firstElementChild.cloneNode(true);
+    const readBtn = card.querySelector('.read-btn')
 
     card.dataset.id = book.id;
     card.querySelector(".book-title").textContent = book.title;
     card.querySelector(".book-author").textContent = book.author;
     card.querySelector(".book-pages").textContent = `${book.pages} pages`;
-    card.querySelector(".read-btn").textContent = book.read ? "read" : "unread";
+    readBtn.textContent = book.read ? "read" : "unread";
+    readBtn.classList.toggle('is-read', book.read);
 
     cardContainer.append(card);
   }
 }
 
 addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, true);
-addBookToLibrary('1984', 'George Orwell', 328, true);
+addBookToLibrary('1984', 'George Orwell', 328, false);
+
+cardContainer.addEventListener("click", (e) => {
+  const card = e.target.closest('.card');
+  if (!card) return;
+
+  const book = myLibrary.find( (b) => b.id === card.dataset.id )
+  if (!book) return;
+
+  if (e.target.closest(".read-btn")) {
+    book.read = !book.read;
+    renderLibrary();
+    return;
+  }
+
+  const index = myLibrary.indexOf(book);
+  if (e.target.closest('.delete-btn')) {
+    myLibrary.splice(index, 1);
+    renderLibrary();
+    return;
+  }
+})
