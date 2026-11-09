@@ -19,6 +19,32 @@
       <div class="card-container">
       </div>
     </main>
+    <!-- DIALOG -->
+    <dialog id="bookDialog" aria-labelledby="bookDialogTitle">
+      <form id="bookForm" class="book-form">
+        <h2 id="bookDialogTitle">Add a book</h2>
+        <div class="field">
+          <label for="title">Title </label>
+          <input type="text" id="title" name="title" required maxlength="100">
+        </div>
+        <div class="field">
+          <label for="author">Author </label>
+          <input type="text" id="author" name="author" required maxlength="100">
+        </div>
+        <div class="field">
+          <label for="pages">Pages </label>
+          <input type="number" id="pages" name="pages" min="1" max="9999" required>
+        </div>
+        <div class="field field--inline">
+          <label for="read">I've read it</label>
+          <input type="checkbox" id="read" name="read">
+        </div>
+        <div class="form-btns">
+          <button type="button" class="cancel-btn">Cancel</button>
+          <button type="submit" class="confirm-btn">Add</button>
+        </div>
+      </form>
+    </dialog>
     <!-- TEMPLATE -->
     <template id="book-template">
       <div class="card">

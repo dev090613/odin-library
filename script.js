@@ -1,5 +1,9 @@
 const cardContainer = document.querySelector(".card-container");
 const bookTemplate = document.querySelector("#book-template");
+const bookDialog = document.querySelector("#bookDialog");
+const bookForm = document.querySelector("#bookForm");
+const addBookBtn = document.querySelector(".add-book-btn");
+
 const myLibrary = [];
 
 function genId() {
@@ -14,6 +18,10 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
 }
+
+Book.prototype.toggleRead = function () {
+  this.read = !this.read;
+};
 
 function addBookToLibrary(title, author, pages, read) {
   const book = new Book(title, author, pages, read);
@@ -47,19 +55,47 @@ cardContainer.addEventListener("click", (e) => {
   const card = e.target.closest('.card');
   if (!card) return;
 
-  const book = myLibrary.find( (b) => b.id === card.dataset.id )
+  const book = myLibrary.find( (b) => b.id === card.dataset.id );
   if (!book) return;
 
   if (e.target.closest(".read-btn")) {
-    book.read = !book.read;
+    book.toggleRead();
     renderLibrary();
     return;
   }
 
-  const index = myLibrary.indexOf(book);
   if (e.target.closest('.delete-btn')) {
+    const index = myLibrary.indexOf(book);
     myLibrary.splice(index, 1);
     renderLibrary();
     return;
   }
+});
+
+addBookBtn.addEventListener("click", () => {
+  bookDialog.showModal();
+});
+
+bookDialog.addEventListener( "click", (e) => {
+  if (e.target.closest('.cancel-btn')) {
+    bookDialog.close();
+  }
+});
+
+bookDialog.addEventListener( "close", () => {
+  bookForm.reset();
+});
+
+bookDialog.addEventListener("submit", e => {
+  e.preventDefault();
+  const data = new FormData(bookForm);
+
+  addBookToLibrary(
+    data.get("title").trim(),
+    data.get("author").trim(),
+    Number(data.get("pages")),
+    data.get("read") === "on"
+  );
+
+  bookDialog.close();
 })

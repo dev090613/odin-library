@@ -82,5 +82,78 @@ main {
   color: #fff;
   border-color: #10b981;
 }
-.is-read::after { content: " ✓"; }
+.read-btn.is-read::after { content: " ✓"; }
 
+/* DIALOG */
+dialog {
+  border: none;
+  border-radius: 10px;
+  padding: 1.75rem;
+  width: min(90vw, 380px);
+}
+
+dialog::backdrop {
+  background: rgb(0 0 0 / 0.45);
+}
+
+.book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field--inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-btns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* BUTTONS */
+.read-btn,
+.delete-btn {
+  padding: 0.5em 0.9em;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.read-btn:hover,
+.delete-btn:hover {
+  background: #f3f4f6;
+}
+
+.delete-btn {
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+.delete-btn:hover {
+  background: #fef2f2;
+}
+
+.read-btn.is-read {
+  background-color: #10b981;
+  color: #fff;
+  border-color: #10b981;
+}
+
+.read-btn.is-read:hover {
+  background-color: #059669;
+}
