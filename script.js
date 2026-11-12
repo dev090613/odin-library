@@ -11,17 +11,19 @@ function genId() {
   return Array.from(b, (x) => x.toString(16).padStart(2, "0")).join("");
 }
 
-function Book(title, author, pages, read) {
-  this.id = genId();
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-}
+class Book {
+  constructor(title, author, pages, read) {
+    this.id = genId();
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 
-Book.prototype.toggleRead = function () {
-  this.read = !this.read;
-};
+  toggleRead = () => {
+    this.read = !this.read;
+  }
+}
 
 function addBookToLibrary(title, author, pages, read) {
   const book = new Book(title, author, pages, read);
