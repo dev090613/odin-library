@@ -26,7 +26,7 @@ class Book {
     return this.#read;
   }
 
-  toggleRead = () => {
+  toggleRead() {
     this.#read = !this.#read;
   }
 
