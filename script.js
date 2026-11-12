@@ -29,12 +29,19 @@ class Book {
   toggleRead = () => {
     this.#read = !this.#read;
   }
+
+  static fromFormData(formData) {
+    return new Book(
+      formData.get("title").trim(),
+      formData.get("author").trim(),
+      Number(formData.get("pages")),
+      formData.get("read") === "on",
+    );
+  }
 }
 
-function addBookToLibrary(title, author, pages, read) {
-  const book = new Book(title, author, pages, read);
+function addBookToLibrary(book) {
   myLibrary.push(book);
-
   renderLibrary();
 }
 
@@ -56,8 +63,8 @@ function renderLibrary() {
   }
 }
 
-addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, true);
-addBookToLibrary('1984', 'George Orwell', 328, false);
+addBookToLibrary(new Book('The Hobbit', 'J.R.R. Tolkien', 295, true));
+addBookToLibrary(new Book('1984', 'George Orwell', 328, false));
 
 cardContainer.addEventListener("click", (e) => {
   const card = e.target.closest('.card');
@@ -96,14 +103,6 @@ bookDialog.addEventListener( "close", () => {
 
 bookDialog.addEventListener("submit", e => {
   e.preventDefault();
-  const data = new FormData(bookForm);
-
-  addBookToLibrary(
-    data.get("title").trim(),
-    data.get("author").trim(),
-    Number(data.get("pages")),
-    data.get("read") === "on"
-  );
-
+  addBookToLibrary(Book.fromFormData(new FormData(bookForm)));
   bookDialog.close();
-})
+});
