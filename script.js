@@ -12,16 +12,22 @@ function genId() {
 }
 
 class Book {
+  #read;
+
   constructor(title, author, pages, read) {
     this.id = genId();
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read;
+    this.#read = read;
+  }
+
+  get read() {
+    return this.#read;
   }
 
   toggleRead = () => {
-    this.read = !this.read;
+    this.#read = !this.#read;
   }
 }
 
